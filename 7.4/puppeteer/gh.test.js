@@ -1,5 +1,9 @@
 let page;
 
+beforeEach(async () => {
+  page = await browser.newPage();
+});
+
 afterEach(() => {
   page.close();
 });
@@ -7,7 +11,6 @@ afterEach(() => {
 describe("Github Marketplace imgbot page test", () => {
 
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/marketplace/imgbot");
   });
 
@@ -28,7 +31,6 @@ describe("Github Marketplace imgbot page test", () => {
 describe("Github Marketplace page test", () => {
 
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/marketplace");
   });
 
@@ -49,10 +51,10 @@ describe("Github Marketplace page test", () => {
 describe("Github page tests", () => {
 
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
   });
   
+
   test("The h1 header content'", async () => {
     const firstLink = await page.$("header div div a");
     await firstLink.click();
