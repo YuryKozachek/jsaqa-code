@@ -1,14 +1,14 @@
 let page;
 
+afterEach(() => {
+  page.close();
+});
+
 describe("Github Marketplace imgbot page test", () => {
 
   beforeEach(async () => {
     page = await browser.newPage();
     await page.goto("https://github.com/marketplace/imgbot");
-  });
-
-  afterEach(() => {
-    page.close();
   });
 
   test("The header content text", async () => {
@@ -32,10 +32,6 @@ describe("Github Marketplace page test", () => {
     await page.goto("https://github.com/marketplace");
   });
 
-  afterEach(() => {
-    page.close();
-  });
-
   test("The header content text", async () => {
     const textH1 = ".h1.mb-2.lh-condensed-ultra";
     const actual = await page.$eval(textH1, link => link.textContent);
@@ -57,10 +53,6 @@ describe("Github page tests", () => {
     await page.goto("https://github.com/team");
   });
   
-  afterEach(() => {
-    page.close();
-  });
-
   test("The h1 header content'", async () => {
     const firstLink = await page.$("header div div a");
     await firstLink.click();
